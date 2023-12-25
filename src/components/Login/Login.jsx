@@ -46,7 +46,7 @@ const Login = ({ setToken }) => {
       })
       .then((data) => {
         setToken(data.token);
-        navigate("/", { state: { message: "Successfully Login" } });
+        navigate("/", { state: { message: "Login successful" } });
       })
       .catch((err) => {
         toast.error(err.toString(), { toastId: "login-alert" });

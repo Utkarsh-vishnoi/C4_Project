@@ -52,6 +52,7 @@ const SearchComponent = () => {
           </SearchIconWrapper>
           <StyledInputBase
             placeholder="Search…"
+            id="search-field"
             inputProps={{ "aria-label": "search" }}
           />
         </SearchWrapper>

@@ -5,6 +5,7 @@ import './App.css';
 import Root from './common/Root.jsx';
 
 import Login from './components/Login/Login.jsx';
+import Signup from './components/Signup/Signup.jsx';
 // import Navbar from './components/Navbar/Navbar.jsx';
 import { ThemeProvider, createTheme } from "@mui/material";
 
@@ -25,12 +26,16 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root token={token} />,
+      element: <Root token={token} setToken={setToken} />,
     },
     {
       path: "/login",
       element: <Login setToken={setToken} />,
     },
+    {
+      path: "/signup",
+      element: <Signup />
+    }
   ])
 
   if (!token) {
