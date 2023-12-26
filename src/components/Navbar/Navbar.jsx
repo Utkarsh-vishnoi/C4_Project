@@ -50,6 +50,7 @@ const Navbar = ({ token, setToken, userRole }) => {
             </>
           ) : (
             <>
+              <Box sx={{ flexGrow: 1 }} />
               <div>
                 <Link className="headerLinks" to="/login" color="inherit">
                   Login
