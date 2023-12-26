@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import Navbar from "../components/Navbar/Navbar";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Root = ({ token, setToken }) => {
@@ -21,7 +21,8 @@ const Root = ({ token, setToken }) => {
 
   return (
     <>
-      <Navbar token={token} setToken={setToken} />
+      <Navbar token={token} setToken={setToken} userRole={"ADMIN"} />
+      <Outlet context={{token}} />
       <ToastContainer autoClose={2000} theme="colored" />
     </>
   );

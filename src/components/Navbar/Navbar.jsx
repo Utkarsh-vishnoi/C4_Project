@@ -4,7 +4,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import SearchComponent from "../../common/Searchbar";
+import Searchbar from "../Searchbar/Searchbar.jsx";
 
 const Navbar = ({ token, setToken, userRole }) => {
   const navigate = useNavigate();
@@ -19,12 +19,17 @@ const Navbar = ({ token, setToken, userRole }) => {
       <AppBar position="static">
         <Toolbar>
           <ShoppingCart sx={{ mr: 2 }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
             upGrad E-Shop
           </Typography>
           {token ? (
             <>
-              <SearchComponent />
+              <Searchbar sx={{ ml: 50 }} />
+              <Box sx={{ flexGrow: 1 }} />
               <div>
                 <Link className="headerLinks" to="/" color="inherit">
                   Home

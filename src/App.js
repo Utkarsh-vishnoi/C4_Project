@@ -8,6 +8,7 @@ import Login from './components/Login/Login.jsx';
 import Signup from './components/Signup/Signup.jsx';
 // import Navbar from './components/Navbar/Navbar.jsx';
 import { ThemeProvider, createTheme } from "@mui/material";
+import Home from './components/Home/Home.jsx';
 
 const theme = createTheme({
   palette: {
@@ -27,6 +28,12 @@ function App() {
     {
       path: "/",
       element: <Root token={token} setToken={setToken} />,
+      children: [
+        {
+          path: "/",
+          element: <Home />
+        }
+      ]
     },
     {
       path: "/login",
