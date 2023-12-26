@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Home = () => {
-  const [filter, setFilter] = useState();
+  const [sort, setSort] = useState();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -22,19 +22,19 @@ const Home = () => {
       );
     }
 
-    if (filter === "asc") {
+    if (sort === "asc") {
       updateProducts = updateProducts.sort(
         (a, b) => parseFloat(a.price) - parseFloat(b.price)
       );
-    } else if (filter === "desc") {
+    } else if (sort === "desc") {
       updateProducts = updateProducts.sort(
         (a, b) => parseFloat(b.price) - parseFloat(a.price)
       );
-    } else if (filter === "new") {
+    } else if (sort === "new") {
       updateProducts = updateProducts.reverse();
     }
     setDisplayedProducts(updateProducts);
-  }, [category, products, filter]);
+  }, [category, products, sort]);
 
   useEffect(() => {
     fetch(`/api/products`, {
@@ -62,9 +62,8 @@ const Home = () => {
   return (
     <div style={{ marginTop: "2%" }}>
       <Categories category={category} setCategory={setCategory} />
-      <SortMenu setFilter={setFilter} />
-  const { token } = useOutletContext();
-  return token;
+      <SortMenu setSort={setSort} />
+      {displayedProducts.map((product) => product.name)}
     </div>
   );
 };

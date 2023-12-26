@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, Typography } from "@mui/material";
 
-const SortMenu = ({ setFilter }) => {
+const SortMenu = ({ setSort }) => {
 
   return (
     <div style={{ marginLeft: "6%", marginTop: 10 }}>
@@ -9,7 +9,7 @@ const SortMenu = ({ setFilter }) => {
         <Select
           labelId="sort-by-label"
           id="sort-by"
-          onChange={e => setFilter(e.target.value)}
+          onChange={e => setSort(e.target.value)}
           defaultValue={"default"}
         >
           <MenuItem value="default">Default</MenuItem>
