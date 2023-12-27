@@ -68,7 +68,7 @@ const Signup = () => {
               throw new Error(data.message);
             } else {
               throw new Error(
-                "There was a problem with the Fetch operation: " + res.status
+                "There was a problem with the Fetch operation:" + res.status
               );
             }
           }
