@@ -6,7 +6,7 @@ import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar.jsx";
 
-const Navbar = ({ token, setToken, userRole }) => {
+const Navbar = ({ token, setToken, userRole, setSearchQuery }) => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
@@ -28,7 +28,9 @@ const Navbar = ({ token, setToken, userRole }) => {
           </Typography>
           {token ? (
             <>
-              <Searchbar sx={{ ml: 50 }} />
+              <Searchbar
+                setSearchQuery={setSearchQuery}
+              />
               <Box sx={{ flexGrow: 1 }} />
               <div>
                 <Link className="headerLinks" to="/" color="inherit">

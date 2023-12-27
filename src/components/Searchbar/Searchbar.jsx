@@ -1,11 +1,9 @@
 import { Search } from "@mui/icons-material";
-import { InputBase, alpha, styled } from "@mui/material";
+import { TextField, alpha, styled } from "@mui/material";
+import React, { useState } from "react";
 
 const Searchbar = () => {
-
-  const searchHandler = (e) => {
-    console.log(e.target.value)
-  }
+  const [query, setQuery] = useState('');
 
   const SearchWrapper = styled("div")(({ theme }) => ({
     position: "relative",
@@ -33,7 +31,7 @@ const Searchbar = () => {
     justifyContent: "center",
   }));
 
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  const StyledInputBase = styled(TextField)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
@@ -53,11 +51,14 @@ const Searchbar = () => {
         <Search />
       </SearchIconWrapper>
       <StyledInputBase
+        id="search-bar"
         placeholder="Search…"
-        type="search"
-        onChange={searchHandler}
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
         inputProps={{ "aria-label": "search" }}
       />
+
     </SearchWrapper>
   );
 };

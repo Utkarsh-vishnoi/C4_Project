@@ -17,7 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../Navbar/Navbar";
 import Copyright from "../../common/Copyright";
 
-const Login = ({ setToken }) => {
+const Login = ({ setToken, setUserInfo }) => {
   const [username, setUserame] = useState();
   const [password, setPassword] = useState();
 
@@ -42,11 +42,13 @@ const Login = ({ setToken }) => {
             );
           }
         }
+        console.log(res.headers);
         return res.json();
       })
       .then((data) => {
-        setToken(data.token);
-        navigate("/", { state: { message: "Login successful" } });
+        setUserInfo(data);
+        // setToken(data.token);
+        // navigate("/", { state: { message: "Login successful" } });
       })
       .catch((err) => {
         toast.error(err.toString(), { toastId: "login-alert" });

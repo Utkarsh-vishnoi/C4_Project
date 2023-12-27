@@ -22,7 +22,8 @@ const theme = createTheme({
 });
 
 function App() {
-  const [token, setToken] = useState()
+  const [token, setToken] = useState("DUMMy")
+  const [userInfo, setUserInfo] = useState({})
 
   const router = createBrowserRouter([
     {
@@ -37,7 +38,7 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login setToken={setToken} />,
+      element: <Login setToken={setToken} setUserInfo={setUserInfo} />,
     },
     {
       path: "/signup",

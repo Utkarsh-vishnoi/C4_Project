@@ -1,16 +1,16 @@
-// import { useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import Categories from "../../common/Categories";
 import SortMenu from "../../common/SortMenu";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Home = () => {
+  const { searchQuery } = useOutletContext();
+
   const [sort, setSort] = useState();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [displayedProducts, setDisplayedProducts] = useState([]);
-
-  // const { token } = useOutletContext();
 
   useEffect(() => {
     let updateProducts = [];

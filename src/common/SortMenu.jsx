@@ -12,7 +12,7 @@ const SortMenu = ({ setSort }) => {
           onChange={e => setSort(e.target.value)}
           defaultValue={"default"}
         >
-          <MenuItem value="default">Default</MenuItem>
+          <MenuItem itemID="sort-default" value="default">Default</MenuItem>
           <MenuItem value="desc">Price: High to Low</MenuItem>
           <MenuItem value="asc">Price: Low to High</MenuItem>
           <MenuItem value="new">Newest</MenuItem>
