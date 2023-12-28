@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-const Root = ({ token, setToken }) => {
+const Root = ({ userInfo, setUserInfo }) => {
   const location = useLocation();
 
   const [searchQuery, setSearchQuery] = useState();
@@ -24,12 +24,11 @@ const Root = ({ token, setToken }) => {
   return (
     <>
       <Navbar
-        token={token}
-        setToken={setToken}
-        userRole={"ADMIN"}
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
         setSearchQuery={setSearchQuery}
       />
-      <Outlet context={{ token, searchQuery }} />
+      <Outlet context={{ userInfo, searchQuery }} />
       <ToastContainer autoClose={2000} theme="colored" />
     </>
   );

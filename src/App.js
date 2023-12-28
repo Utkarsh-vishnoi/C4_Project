@@ -22,13 +22,12 @@ const theme = createTheme({
 });
 
 function App() {
-  const [token, setToken] = useState("DUMMy")
-  const [userInfo, setUserInfo] = useState({})
+  const [userInfo, setUserInfo] = useState({ token: "", roles: [] })
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root token={token} setToken={setToken} />,
+      element: <Root userInfo={userInfo} setUserInfo={setUserInfo} />,
       children: [
         {
           path: "/",
@@ -38,15 +37,15 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login setToken={setToken} setUserInfo={setUserInfo} />,
+      element: <Login userInfo={userInfo} setUserInfo={setUserInfo} />,
     },
     {
       path: "/signup",
-      element: <Signup />
+      element: <Signup userInfo={userInfo} />
     }
   ])
 
-  if (!token) {
+  if (!userInfo.token) {
     router.navigate('/login')
   }
 
