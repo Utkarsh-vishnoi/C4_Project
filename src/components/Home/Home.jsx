@@ -3,9 +3,12 @@ import Categories from "../../common/Categories";
 import SortMenu from "../../common/SortMenu";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Grid } from "@mui/material";
+import Product from "../../common/Product";
+import Copyright from "../../common/Copyright";
 
 const Home = () => {
-  const { searchQuery } = useOutletContext();
+  const { userInfo, searchQuery } = useOutletContext();
 
   const [sort, setSort] = useState();
   const [products, setProducts] = useState([]);
@@ -68,10 +71,36 @@ const Home = () => {
   }, []);
 
   return (
-    <div style={{ marginTop: "2%" }}>
+    <div
+      style={{
+        marginTop: "2%",
+        marginBottom: "2%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       <Categories category={category} setCategory={setCategory} />
       <SortMenu setSort={setSort} />
-      {displayedProducts.map((product) => product.name)}
+      <main
+        style={{
+          marginLeft: "8%",
+          marginRight: "8%",
+          marginTop: "2%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Grid direction="row" spacing={4} container alignItems="center" justifyContent="center">
+          {displayedProducts.map((product) => (
+            <Grid item key={product.id} xs={12} md={4} lg={4} sm={12}>
+              <Product product={product} userInfo={userInfo} />
+            </Grid>
+          ))}
+        </Grid>
+      </main>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </div>
   );
 };
