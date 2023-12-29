@@ -14,27 +14,35 @@ const Home = () => {
 
   useEffect(() => {
     let updateProducts = [];
-    if (category === "all") {
-      updateProducts = products;
+
+    if (searchQuery === "") {
+      if (category === "all") {
+        updateProducts = products;
+      } else {
+        updateProducts = products.filter((item) =>
+          item.category.includes(category)
+        );
+      }
+
+      if (sort === "asc") {
+        updateProducts = updateProducts.sort(
+          (a, b) => parseFloat(a.price) - parseFloat(b.price)
+        );
+      } else if (sort === "desc") {
+        updateProducts = updateProducts.sort(
+          (a, b) => parseFloat(b.price) - parseFloat(a.price)
+        );
+      } else if (sort === "new") {
+        updateProducts = updateProducts.reverse();
+      }
     } else {
-      updateProducts = products.filter((item) =>
-        item.category.includes(category)
+      updateProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
 
-    if (sort === "asc") {
-      updateProducts = updateProducts.sort(
-        (a, b) => parseFloat(a.price) - parseFloat(b.price)
-      );
-    } else if (sort === "desc") {
-      updateProducts = updateProducts.sort(
-        (a, b) => parseFloat(b.price) - parseFloat(a.price)
-      );
-    } else if (sort === "new") {
-      updateProducts = updateProducts.reverse();
-    }
     setDisplayedProducts(updateProducts);
-  }, [category, products, sort]);
+  }, [category, products, sort, searchQuery]);
 
   useEffect(() => {
     fetch(`/api/products`, {

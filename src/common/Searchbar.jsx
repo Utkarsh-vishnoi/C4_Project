@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { OutlinedInput, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
-const Searchbar = () => {
-  const [query, setQuery] = useState("");
-
+const Searchbar = ({ searchQuery, setSearchQuery }) => {
   const customOutlinedInputStyle = {
     position: "absolute",
     transform: "translate(0%, -50%)",
@@ -27,9 +25,9 @@ const Searchbar = () => {
       <OutlinedInput
         id="search"
         style={customOutlinedInputStyle}
-        value={query}
+        value={searchQuery}
         size="small"
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => setSearchQuery(e.target.value)}
         startAdornment={
           <InputAdornment position="start">
             <Search style={{ color: "#FFFFFF" }} />

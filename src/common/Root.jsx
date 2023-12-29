@@ -5,9 +5,9 @@ import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Root = ({ userInfo, setUserInfo }) => {
-  const location = useLocation();
-
   const [searchQuery, setSearchQuery] = useState();
+
+  const location = useLocation();
 
   useEffect(() => {
     // if there is a message from location, call Alert

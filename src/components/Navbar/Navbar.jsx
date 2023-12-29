@@ -5,7 +5,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Searchbar from "../../common/Searchbar";
-const Navbar = ({ userInfo, setUserInfo, setSearchQuery }) => {
+const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
@@ -27,7 +27,7 @@ const Navbar = ({ userInfo, setUserInfo, setSearchQuery }) => {
           </Typography>
           {userInfo.token ? (
             <>
-              <Searchbar setSearchQuery={setSearchQuery} />
+              <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
               <Box sx={{ flexGrow: 1 }} />
               <div>
                 <Link className="headerLinks" to="/" color="inherit">
