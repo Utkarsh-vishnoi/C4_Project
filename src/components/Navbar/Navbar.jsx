@@ -4,8 +4,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import Searchbar from "../Searchbar/Searchbar.jsx";
-
+import Searchbar from "../../common/Searchbar";
 const Navbar = ({ userInfo, setUserInfo, setSearchQuery }) => {
   const navigate = useNavigate();
 
