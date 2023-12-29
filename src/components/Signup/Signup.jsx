@@ -17,7 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../Navbar/Navbar";
 import Copyright from "../../common/Copyright";
 
-const Signup = () => {
+const Signup = ({ userInfo }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -25,7 +25,7 @@ const Signup = () => {
   const [lastName, setLastName] = useState();
   const [contactNumber, setContactNumber] = useState();
 
-  const role = ["admin"];
+  const role = ["user"];
 
   const isValidPassword = (password, confirmPassword) => {
     if (password.length < 6) {
@@ -85,7 +85,7 @@ const Signup = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar userInfo={userInfo} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -115,7 +115,7 @@ const Signup = () => {
               id="firstName"
               label="First Name"
               name="firstName"
-              autoComplete="firstName"
+              autoComplete="given-name"
               autoFocus
               onChange={(e) => setFirstName(e.target.value)}
             />
@@ -128,7 +128,7 @@ const Signup = () => {
               label="Last Name"
               type="lastName"
               id="lastName"
-              autoComplete="lastName"
+              autoComplete="family-name"
               onChange={(e) => setLastName(e.target.value)}
             />
             <TextField
@@ -151,7 +151,7 @@ const Signup = () => {
               label="Password"
               type="password"
               id="password"
-              autoComplete="password"
+              autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />
 
@@ -163,7 +163,7 @@ const Signup = () => {
               label="Confirm Password"
               type="password"
               id="confirmPassword"
-              autoComplete="confirmPassword"
+              autoComplete="current-password"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <TextField
@@ -174,7 +174,7 @@ const Signup = () => {
               label="Contact Number"
               type="number"
               id="contact"
-              autoComplete="contact"
+              autoComplete="tel-national"
               onChange={(e) => setContactNumber(e.target.value)}
             />
 

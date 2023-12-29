@@ -4,13 +4,12 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import Searchbar from "../Searchbar/Searchbar.jsx";
-
-const Navbar = ({ token, setToken, userRole, setSearchQuery }) => {
+import Searchbar from "../../common/Searchbar";
+const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    setToken();
+    setUserInfo({ ...userInfo, token: "" });
     navigate("/login");
   };
 
@@ -26,17 +25,15 @@ const Navbar = ({ token, setToken, userRole, setSearchQuery }) => {
           >
             upGrad E-Shop
           </Typography>
-          {token ? (
+          {userInfo.token ? (
             <>
-              <Searchbar
-                setSearchQuery={setSearchQuery}
-              />
+              <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
               <Box sx={{ flexGrow: 1 }} />
               <div>
                 <Link className="headerLinks" to="/" color="inherit">
                   Home
                 </Link>
-                {userRole === "ADMIN" && (
+                {userInfo.roles.includes("ADMIN") && (
                   <Link className="headerLinks" to="/update" color="inherit">
                     Add Product
                   </Link>
