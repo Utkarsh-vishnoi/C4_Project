@@ -8,12 +8,13 @@ const Searchbar = () => {
     position: 'absolute',
     transform: 'translate(0%, -50%)',
     color: '#FFFFFF',
-    borderRadius: 2,
+    borderRadius: "5px",
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     '&:hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.25)',
     },
     width: '100%',
+    height: '40px'
   };
 
   const centerContainerStyle = {
