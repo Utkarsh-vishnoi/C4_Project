@@ -5,7 +5,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 const Root = ({ userInfo, setUserInfo }) => {
-  const [searchQuery, setSearchQuery] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const location = useLocation();
 
