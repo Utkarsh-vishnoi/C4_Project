@@ -44,7 +44,7 @@ const Categories = ({ category, setCategory }) => {
         justifyContent: "center",
       }}
     >
-      <ToggleButton value="all" onClick={() => setCategory()}>
+      <ToggleButton value="all">
         ALL
       </ToggleButton>
       {categories.map((item, index) => (

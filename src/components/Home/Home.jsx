@@ -10,7 +10,7 @@ import Copyright from "../../common/Copyright";
 const Home = () => {
   const { userInfo, searchQuery } = useOutletContext();
 
-  const [sort, setSort] = useState();
+  const [sort, setSort] = useState("default");
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -20,7 +20,7 @@ const Home = () => {
 
     if (searchQuery === "") {
       if (category === "all") {
-        updateProducts = products;
+        updateProducts = [...products];
       } else {
         updateProducts = products.filter((item) =>
           item.category.includes(category)
@@ -92,7 +92,13 @@ const Home = () => {
           justifyContent: "center",
         }}
       >
-        <Grid direction="row" spacing={4} container alignItems="center" justifyContent="center">
+        <Grid
+          direction="row"
+          spacing={4}
+          container
+          alignItems="center"
+          justifyContent="center"
+        >
           {displayedProducts.map((product) => (
             <Grid item key={product.id} xs={12} md={4} lg={4} sm={12}>
               <Product product={product} userInfo={userInfo} />
