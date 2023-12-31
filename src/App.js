@@ -9,6 +9,7 @@ import Signup from './components/Signup/Signup.jsx';
 // import Navbar from './components/Navbar/Navbar.jsx';
 import { ThemeProvider, createTheme } from "@mui/material";
 import Home from './components/Home/Home.jsx';
+import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 
 const theme = createTheme({
   palette: {
@@ -32,6 +33,10 @@ function App() {
         {
           path: "/",
           element: <Home />
+        },
+        {
+          path: '/product/:productId',
+          element: <ProductDetails />
         }
       ]
     },
