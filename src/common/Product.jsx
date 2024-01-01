@@ -50,7 +50,7 @@ const Product = ({ product, userInfo }) => {
         </Typography>
       </CardContent>
       <CardActions className="CTA" sx={{ mt: 2 }}>
-        <Link className="buy" to={`/${product.id}`}>
+        <Link className="buy" to={`/product/${product.id}`}>
           <Button size="small" variant="contained" color="primary">
             Buy
           </Button>
