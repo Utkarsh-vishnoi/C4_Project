@@ -10,6 +10,7 @@ import Signup from './components/Signup/Signup.jsx';
 import { ThemeProvider, createTheme } from "@mui/material";
 import Home from './components/Home/Home.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
+import ModifyProduct from './components/ModifyProduct/ModifyProduct.jsx';
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,10 @@ function App() {
         {
           path: '/product/:productId',
           element: <ProductDetails />
+        },
+        {
+          path: '/addProduct',
+          element: <ModifyProduct />
         }
       ]
     },
