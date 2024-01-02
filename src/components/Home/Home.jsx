@@ -70,6 +70,12 @@ const Home = () => {
       });
   }, []);
 
+  const productDeleteHandler = (productId) => {
+    setDisplayedProducts(
+      displayedProducts.filter((product) => product.id !== productId)
+    );
+  };
+
   return (
     <div
       style={{
@@ -101,7 +107,11 @@ const Home = () => {
         >
           {displayedProducts.map((product) => (
             <Grid item key={product.id} xs={12} md={4} lg={4} sm={12}>
-              <Product product={product} userInfo={userInfo} />
+              <Product
+                product={product}
+                onDelete={productDeleteHandler}
+                userInfo={userInfo}
+              />
             </Grid>
           ))}
         </Grid>

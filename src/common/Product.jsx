@@ -11,64 +11,102 @@ import {
 import { Link } from "react-router-dom";
 
 import "./Product.css";
+import { useState } from "react";
+import DeleteDialog from "./DeleteDialog";
+import { toast } from "react-toastify";
 
-const Product = ({ product, userInfo }) => {
+const Product = ({ product, userInfo, onDelete }) => {
+  const [deleteDialog, showDeleteDialog] = useState(false);
+
   const handleEdit = () => {};
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    fetch(`/api/products/${product.id}`, {
+      method: "DELETE",
+      headers: {
+        "x-auth-token": userInfo.token,
+      },
+    })
+      .then((res) => {
+        if (!res.ok)
+          throw new Error(
+            "There was a problem with the Fetch operation: " + res.status
+          );
+      })
+      .then(() => {
+        onDelete(product.id);
+        showDeleteDialog(false);
+        toast.success(`Product ${product.name} deleted successfully`, {
+          toastId: "product-delete",
+        });
+      })
+      .catch((err) => {
+        toast.error(err.toString(), { toastId: "product-delete" });
+      });
+  };
 
   return (
-    <Card className="card" sx={{ width: 350, height: 450 }} key={product.id}>
-      <CardMedia
-        sx={{ height: 200 }}
-        image={product.imageUrl}
-        title={product.name}
-        alt={product.name}
-        key={product.id}
+    <>
+      <DeleteDialog
+        open={deleteDialog}
+        onAccept={handleDelete}
+        onReject={() => showDeleteDialog(false)}
       />
-      <CardContent>
-        <div className="cardContent">
-          <Typography
-            className="productName"
-            gutterBottom
-            variant="h6"
-            component="div"
-          >
-            {product.name}
+      <Card className="card" sx={{ width: 350, height: 450 }} key={product.id}>
+        <CardMedia
+          sx={{ height: 200 }}
+          image={product.imageUrl}
+          title={product.name}
+          alt={product.name}
+          key={product.id}
+        />
+        <CardContent>
+          <div className="cardContent">
+            <Typography
+              className="productName"
+              gutterBottom
+              variant="h6"
+              component="div"
+            >
+              {product.name}
+            </Typography>
+            <Typography
+              className="price"
+              gutterBottom
+              variant="h6"
+              component="div"
+            >
+              <span>&#x20B9;</span> {product.price}
+            </Typography>
+          </div>
+          <Typography variant="body2" color="text.secondary">
+            {product.description}
           </Typography>
-          <Typography
-            className="price"
-            gutterBottom
-            variant="h6"
-            component="div"
-          >
-            <span>&#x20B9;</span> {product.price}
-          </Typography>
-        </div>
-        <Typography variant="body2" color="text.secondary">
-          {product.description}
-        </Typography>
-      </CardContent>
-      <CardActions className="CTA" sx={{ mt: 2 }}>
-        <Link className="buy" to={`/product/${product.id}`}>
-          <Button size="small" variant="contained" color="primary">
-            Buy
-          </Button>
-        </Link>
+        </CardContent>
+        <CardActions className="CTA" sx={{ mt: 2 }}>
+          <Link className="buy" to={`/product/${product.id}`}>
+            <Button size="small" variant="contained" color="primary">
+              Buy
+            </Button>
+          </Link>
 
-        {userInfo.roles.includes("ADMIN") && (
-          <Typography className="adminOps">
-            <IconButton aria-label="delete" onClick={handleEdit}>
-              <Edit fontSize="small" />
-            </IconButton>
+          {userInfo.roles.includes("ADMIN") && (
+            <Typography className="adminOps">
+              <IconButton aria-label="edit" onClick={handleEdit}>
+                <Edit fontSize="small" />
+              </IconButton>
 
-            <IconButton aria-label="delete" onClick={handleDelete}>
-              <Delete fontSize="small" />
-            </IconButton>
-          </Typography>
-        )}
-      </CardActions>
-    </Card>
+              <IconButton
+                aria-label="delete"
+                onClick={() => showDeleteDialog(true)}
+              >
+                <Delete fontSize="small" />
+              </IconButton>
+            </Typography>
+          )}
+        </CardActions>
+      </Card>
+    </>
   );
 };
 
