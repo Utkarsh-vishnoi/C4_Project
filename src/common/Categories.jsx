@@ -2,7 +2,7 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const Categories = ({ category, setCategory }) => {
+const Categories = ({ category, setCategory, refreshCategory }) => {
   const [categories, setCategories] = useState([]);
 
   const categoryChangeHandler = (e, newCategory) => {
@@ -26,12 +26,15 @@ const Categories = ({ category, setCategory }) => {
         return res.json();
       })
       .then((data) => {
+        if(!data.includes(category)){
+          setCategory("all")
+        }
         setCategories(data);
       })
       .catch((err) => {
         toast.error(err.toString(), { toastId: "categories-alert" });
       });
-  }, []);
+  }, [refreshCategory, category, setCategory]);
 
   return (
     <ToggleButtonGroup

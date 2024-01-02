@@ -14,6 +14,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
   const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [refreshCategory, setRefreshCategory] = useState(true);
 
   useEffect(() => {
     let updateProducts = [];
@@ -74,6 +75,8 @@ const Home = () => {
     setDisplayedProducts(
       displayedProducts.filter((product) => product.id !== productId)
     );
+    setProducts(products.filter((product) => product.id !== productId));
+    setRefreshCategory(!refreshCategory);
   };
 
   return (
@@ -86,7 +89,11 @@ const Home = () => {
         justifyContent: "center",
       }}
     >
-      <Categories category={category} setCategory={setCategory} />
+      <Categories
+        category={category}
+        refreshCategory={refreshCategory}
+        setCategory={setCategory}
+      />
       <SortMenu setSort={setSort} />
       <main
         style={{
