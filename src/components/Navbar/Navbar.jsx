@@ -34,7 +34,7 @@ const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
                   Home
                 </Link>
                 {userInfo.roles.includes("ADMIN") && (
-                  <Link className="headerLinks" to="/update" color="inherit">
+                  <Link className="headerLinks" to="/addProduct" color="inherit">
                     Add Product
                   </Link>
                 )}
