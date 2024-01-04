@@ -8,7 +8,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Product.css";
 import { useState } from "react";
@@ -16,9 +16,13 @@ import DeleteDialog from "./DeleteDialog";
 import { toast } from "react-toastify";
 
 const Product = ({ product, userInfo, onDelete }) => {
+  const navigate = useNavigate();
+
   const [deleteDialog, showDeleteDialog] = useState(false);
 
-  const handleEdit = () => {};
+  const modifyHandler = () => {
+    navigate(`/update/${product.id}`);
+  };
 
   const handleDelete = () => {
     fetch(`/api/products/${product.id}`, {
@@ -92,7 +96,7 @@ const Product = ({ product, userInfo, onDelete }) => {
 
           {userInfo.roles.includes("ADMIN") && (
             <Typography className="adminOps">
-              <IconButton aria-label="edit" onClick={handleEdit}>
+              <IconButton aria-label="edit" onClick={modifyHandler}>
                 <Edit fontSize="small" />
               </IconButton>
 
