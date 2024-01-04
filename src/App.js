@@ -42,6 +42,10 @@ function App() {
         {
           path: '/addProduct',
           element: <ModifyProduct />
+        },
+        {
+          path: "/update/:productId",
+          element: <ModifyProduct />
         }
       ]
     },
