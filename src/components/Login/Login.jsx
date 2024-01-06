@@ -32,7 +32,7 @@ const Login = ({ userInfo, setUserInfo }) => {
       },
       body: JSON.stringify({ username, password }),
     })
-      .then((res) => {
+      .then(async (res) => {
         if (!res.ok) {
           if (res.status === 401) {
             throw new Error("Incorrect E-mail or Password.");
@@ -42,7 +42,8 @@ const Login = ({ userInfo, setUserInfo }) => {
             );
           }
         }
-        return res.json();
+        const data = await res.json()
+        return { ...data, token: res.headers.get("x-auth-token") };
       })
       .then((data) => {
         setUserInfo(data);
