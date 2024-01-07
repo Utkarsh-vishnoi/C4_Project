@@ -23,32 +23,28 @@ const OrderSummary = ({ data }) => {
         }}
       >
         <Grid item className="confirmOrder">
-          <Typography>
-            <Typography variant="h4" mb={1}>
-              {data.product.name}
-            </Typography>
-            <Typography variant="body1" mb={1}>
-              Quantity: {data.orderQuantity}
-            </Typography>
-
-            <div className="descDetails">
-              <Typography variant="subtitle1" gutterBottom>
-                Category:{" "}
-                <b>
-                  {data.product.category.replace(/(^\w|\s\w)/g, (m) =>
-                    m.toUpperCase()
-                  )}
-                </b>{" "}
-              </Typography>
-              <Typography variant="body2">
-                {data.product.description}
-              </Typography>
-              <Typography variant="h5" color="secondary">
-                Total Price : <span>&#x20B9;</span>{" "}
-                {data.product.price * data.orderQuantity}
-              </Typography>
-            </div>
+          <Typography variant="h4" mb={1}>
+            {data.product.name}
           </Typography>
+          <Typography variant="body1" mb={1}>
+            Quantity: {data.orderQuantity}
+          </Typography>
+
+          <div className="descDetails">
+            <Typography variant="subtitle1" gutterBottom>
+              Category:{" "}
+              <b>
+                {data.product.category.replace(/(^\w|\s\w)/g, (m) =>
+                  m.toUpperCase()
+                )}
+              </b>{" "}
+            </Typography>
+            <Typography variant="body2">{data.product.description}</Typography>
+            <Typography variant="h5" color="secondary">
+              Total Price : <span>&#x20B9;</span>{" "}
+              {data.product.price * data.orderQuantity}
+            </Typography>
+          </div>
         </Grid>
         <Divider orientation="vertical" flexItem />
         <Grid className="address">
