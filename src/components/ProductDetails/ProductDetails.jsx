@@ -14,13 +14,12 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState({ category: "" });
   const [category, setCategory] = useState("all");
-  const [orderQty, setOrderQty] = useState(1);
+  const [orderQuantity, setOrderQuantity] = useState(1);
 
   useEffect(() => {
     fetch(`/api/products/${productId}`, {
       method: "GET",
       headers: {
-        // "Content-Type": "application/json",
         "x-auth-token": userInfo.token,
       },
     })
@@ -49,13 +48,13 @@ const ProductDetails = () => {
 
   const handleChange = (e) => {
     if (e.target.value > 0) {
-      setOrderQty(e.target.value);
+      setOrderQuantity(e.target.value);
     }
   };
 
   const handlePlaceOrder = () => {
     navigate(`/checkout/${productId}`, {
-      state: { product, orderQty, capitalizedCategory },
+      state: { product, orderQuantity },
     });
   };
 
@@ -102,7 +101,7 @@ const ProductDetails = () => {
                 id="outlined-basic"
                 label="Enter Quantity"
                 variant="outlined"
-                value={orderQty}
+                value={orderQuantity}
                 onChange={handleChange}
               />
 

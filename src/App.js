@@ -11,6 +11,7 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import Home from './components/Home/Home.jsx';
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
 import ModifyProduct from './components/ModifyProduct/ModifyProduct.jsx';
+import Checkout from './components/Checkout/Checkout.jsx';
 
 const theme = createTheme({
   palette: {
@@ -42,7 +43,11 @@ function App() {
         {
           path: '/addProduct',
           element: <ModifyProduct />
-        }
+        },
+        {
+          path: "/checkout/:id",
+          element: <Checkout />,
+        },
       ]
     },
     {
