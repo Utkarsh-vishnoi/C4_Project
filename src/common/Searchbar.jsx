@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
-import { OutlinedInput, InputAdornment } from '@mui/material';
+import React from "react";
+import { OutlinedInput, InputAdornment } from "@mui/material";
 import { Search } from "@mui/icons-material";
-const Searchbar = () => {
-  const [query, setQuery] = useState('');
-
+const Searchbar = ({ searchQuery, setSearchQuery }) => {
   const customOutlinedInputStyle = {
-    position: 'absolute',
-    transform: 'translate(0%, -50%)',
-    color: '#FFFFFF',
+    position: "absolute",
+    transform: "translate(0%, -50%)",
+    color: "#FFFFFF",
     borderRadius: "5px",
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    "&:hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.25)",
     },
-    width: '100%',
-    height: '40px'
+    width: "100%",
+    height: "40px",
   };
 
   const centerContainerStyle = {
-    textAlign: 'center',
-    width: '33%',
-    position: 'relative'
+    textAlign: "center",
+    width: "33%",
+    position: "relative",
   };
 
   return (
@@ -28,16 +26,16 @@ const Searchbar = () => {
       <OutlinedInput
         id="search"
         style={customOutlinedInputStyle}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
         startAdornment={
           <InputAdornment position="start">
-            <Search style={{ color: '#FFFFFF' }} />
+            <Search style={{ color: "#FFFFFF" }} />
           </InputAdornment>
         }
-        placeholder={'Search'}
+        placeholder={"Search"}
         inputProps={{
-          'aria-label': 'search',
+          "aria-label": "search",
         }}
       />
     </div>
