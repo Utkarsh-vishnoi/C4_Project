@@ -14,7 +14,7 @@ const Checkout = () => {
   const location = useLocation();
 
   const [activeStep, setActiveStep] = useState(1);
-  const [address, setAddress] = useState({ label: "", value: "" });
+  const [address, setAddress] = useState({ label: "", address: { id: "" } });
 
   const createOrder = () => {
     fetch(`/api/orders`, {
@@ -94,7 +94,9 @@ const Checkout = () => {
               </Stepper>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              {activeStep === 1 && <AddressSelector setAddress={setAddress} />}
+              {activeStep === 1 && (
+                <AddressSelector setAddress={setAddress} />
+              )}
               {activeStep === 2 && (
                 <OrderSummary data={{ ...location.state, address }} />
               )}

@@ -11,7 +11,7 @@ const Copyright = (props) => {
       {"Copyright © "}
       <a
         color="inherit"
-        href="https://www.upgrad.com/vn/"
+        href="https://www.upgrad.com/"
         target="_blank"
         rel="noreferrer"
       >

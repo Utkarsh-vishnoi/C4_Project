@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -11,13 +11,15 @@ import {
 } from "@mui/material";
 import "react-toastify/dist/ReactToastify.css";
 import { LockOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import Navbar from "../Navbar/Navbar";
 import Copyright from "../../common/Copyright";
 
 const Signup = ({ userInfo }) => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -26,6 +28,12 @@ const Signup = ({ userInfo }) => {
   const [contactNumber, setContactNumber] = useState();
 
   const role = ["user"];
+
+  useEffect(() => {
+    if (userInfo.token) {
+      navigate("/");
+    }
+  }, [userInfo.token, navigate]);
 
   const isValidPassword = (password, confirmPassword) => {
     if (password.length < 6) {
@@ -43,10 +51,24 @@ const Signup = ({ userInfo }) => {
     }
   };
 
+  const isValidPhoneNumber = (contactNumber) => {
+    if (contactNumber.length !== 10) {
+      toast.error("Contact Number should be 10 digits", {
+        toastId: "error",
+      });
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (isValidPassword(password, confirmPassword)) {
+    if (
+      isValidPassword(password, confirmPassword) &&
+      isValidPhoneNumber(contactNumber)
+    ) {
       fetch(`/api/auth/signup`, {
         method: "POST",
         headers: {

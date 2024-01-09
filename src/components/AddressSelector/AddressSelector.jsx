@@ -3,12 +3,14 @@ import {
   Button,
   Container,
   CssBaseline,
+  FormControl,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
 
 const AddressSelector = ({ setAddress }) => {
@@ -23,6 +25,15 @@ const AddressSelector = ({ setAddress }) => {
   const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState("");
   const [refresh, setRefresh] = useState(false);
+  const [addressId, setAddressId] = useState("");
+
+  useEffect(() => {
+    if (addressId !== "")
+      setAddress(
+        addresses.filter((address) => address.address.id === addressId)[0]
+      );
+    else setAddress({ label: "", address: { id: "" } });
+  }, [addressId, addresses, setAddress]);
 
   useEffect(() => {
     fetch(`/api/addresses`, {
@@ -42,7 +53,6 @@ const AddressSelector = ({ setAddress }) => {
       .then((data) => {
         setAddresses(
           data.map((address) => ({
-            value: address.id,
             address,
             label: address.name.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()),
           }))
@@ -136,31 +146,28 @@ const AddressSelector = ({ setAddress }) => {
               width: "100%",
             }}
           >
-            <Typography
-              variant="body2"
-              style={{
-                textAlign: "left",
-              }}
-            >
-              Select Address
-            </Typography>
-            <CreatableSelect
-              style={{
-                textAlign: "left",
-              }}
-              name="address"
-              options={addresses}
-              autoFocus
-              clearable={false}
-              onChange={(e) => setAddress(e)}
-              styles={{
-                menu: (base) => ({
-                  ...base,
-                  zIndex: 100,
-                }),
-              }}
-              color="primary"
-            />
+            <Typography display="block">Select Address</Typography>
+            <FormControl style={{ width: "100%" }} size="small">
+              <Select
+                labelId="add-address-label"
+                value={addressId}
+                displayEmpty
+                inputProps={{
+                  id: "add-address",
+                  "aria-label": "Without label",
+                }}
+                onChange={(e) => setAddressId(e.target.value)}
+              >
+                <MenuItem value="">
+                  <em>Select...</em>
+                </MenuItem>
+                {addresses.map((address) => (
+                  <MenuItem key={address.address.id} value={address.address.id}>
+                    {address.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
           <Typography variant="body2" sx={{ mb: 2 }}>
             -OR-

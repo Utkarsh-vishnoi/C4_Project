@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Box,
@@ -23,6 +23,12 @@ const Login = ({ userInfo, setUserInfo }) => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (userInfo.token) {
+      navigate("/");
+    }
+  }, [userInfo.token, navigate]);
+
   const submitHandler = async (e) => {
     e.preventDefault();
     fetch(`/api/auth/signin`, {
@@ -42,7 +48,7 @@ const Login = ({ userInfo, setUserInfo }) => {
             );
           }
         }
-        const data = await res.json()
+        const data = await res.json();
         return { ...data, token: res.headers.get("x-auth-token") };
       })
       .then((data) => {
@@ -84,6 +90,7 @@ const Login = ({ userInfo, setUserInfo }) => {
               required
               fullWidth
               id="email"
+              type="email"
               label="Email Address"
               name="email"
               autoComplete="email"
