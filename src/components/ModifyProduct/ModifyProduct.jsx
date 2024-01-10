@@ -80,10 +80,14 @@ const ModifyProduct = () => {
           setDescription(data.description);
         })
         .catch((err) => {
-          toast.error(err.toString(), { toastId: "login-alert" });
+          toast.error(err.toString(), { toastId: "modify-alert" });
         });
     }
   }, [productId, userInfo.token]);
+
+  useEffect(() => {
+    if (error !== "") toast.error(error, { toastId: "modify-product" });
+  }, [error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -176,7 +180,7 @@ const ModifyProduct = () => {
 
         <Box
           component="form"
-          noValidate
+          onSubmit={submitHandler}
           sx={{ mt: 1 }}
           style={{
             textAlign: "left",
@@ -258,7 +262,7 @@ const ModifyProduct = () => {
             fullWidth
             name="imageUrl"
             label="Image URL"
-            type="imageUrl"
+            type="url"
             id="imageUrl"
             onChange={(e) => setImageUrl(e.target.value)}
           />
@@ -273,18 +277,12 @@ const ModifyProduct = () => {
             id="description"
             onChange={(e) => setDescription(e.target.value)}
           />
-          {error && (
-            <Typography variant="body1" color="secondary">
-              {error}
-            </Typography>
-          )}
           <Button
             className="button"
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            onClick={submitHandler}
           >
             {title.toUpperCase()}
           </Button>
