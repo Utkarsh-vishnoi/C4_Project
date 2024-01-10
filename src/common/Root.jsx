@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Copyright from "./Copyright";
 
 const Root = ({ userInfo, setUserInfo }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const location = useLocation();
 
+// Check if message is found and raise a toast
   useEffect(() => {
-    // if there is a message from location, call Alert
     if (location.state !== null) {
       let message = location.state.message;
       toast.success(message, { toastId: "success" });
@@ -29,6 +30,7 @@ const Root = ({ userInfo, setUserInfo }) => {
         setSearchQuery={setSearchQuery}
       />
       <Outlet context={{ userInfo, searchQuery }} />
+      <Copyright sx={{ mt: 8, mb: 4 }} />
       <ToastContainer autoClose={2000} theme="colored" />
     </>
   );

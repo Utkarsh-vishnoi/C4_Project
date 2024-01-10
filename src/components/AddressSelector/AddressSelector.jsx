@@ -35,6 +35,7 @@ const AddressSelector = ({ setAddress }) => {
     else setAddress({ label: "", address: { id: "" } });
   }, [addressId, addresses, setAddress]);
 
+  // Use effect to fetch user addresses
   useEffect(() => {
     fetch(`/api/addresses`, {
       method: "GET",
@@ -51,9 +52,11 @@ const AddressSelector = ({ setAddress }) => {
         return res.json();
       })
       .then((data) => {
+        // Map addresses to include labels for the Select component
         setAddresses(
           data.map((address) => ({
             address,
+            //Translate first letter of all words to uppercase
             label: address.name.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()),
           }))
         );
@@ -72,7 +75,8 @@ const AddressSelector = ({ setAddress }) => {
     setLandmark("");
     setZipcode("");
   };
-
+ 
+  //Function to save address after validation
   const addAddressHandler = (e) => {
     e.preventDefault();
     setError("");
@@ -185,6 +189,7 @@ const AddressSelector = ({ setAddress }) => {
 
             <Box
               component="form"
+              onSubmit={addAddressHandler}
               noValidate
               sx={{ mt: 1 }}
               style={{
@@ -283,7 +288,6 @@ const AddressSelector = ({ setAddress }) => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={addAddressHandler}
               >
                 SAVE ADDRESS
               </Button>

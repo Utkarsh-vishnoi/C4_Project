@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Step, StepLabel, Stepper, Button, Box, Grid } from "@mui/material";
-import Copyright from "../../common/Copyright";
 import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import AddressSelector from "../AddressSelector/AddressSelector";
 import OrderSummary from "../OrderSummary/OrderSummary";
@@ -14,8 +13,10 @@ const Checkout = () => {
   const location = useLocation();
 
   const [activeStep, setActiveStep] = useState(1);
+  // State to store the selected address during the checkout process
   const [address, setAddress] = useState({ label: "", address: { id: "" } });
 
+  // Function to create a new order
   const createOrder = () => {
     fetch(`/api/orders`, {
       method: "POST",
@@ -44,7 +45,7 @@ const Checkout = () => {
         toast.error(err.toString(), { toastId: "order-alert" });
       });
   };
-
+  // Function to validate if address is present
   const validate = (activeStep) => {
     if (activeStep === 1) {
       if (address.label === "") {
@@ -55,6 +56,7 @@ const Checkout = () => {
     return true;
   };
 
+  // Function to handle the "Next" button click
   const handleNext = () => {
     if (activeStep !== steps.length - 1) {
       if (validate(activeStep))
@@ -64,6 +66,7 @@ const Checkout = () => {
     }
   };
 
+  // Function to handle the "Back" button click
   const handleBack = () => {
     if (activeStep !== 1) setActiveStep((prevActiveStep) => prevActiveStep - 1);
     else navigate(-1);
@@ -93,10 +96,9 @@ const Checkout = () => {
                 })}
               </Stepper>
             </div>
+            {/* Display the appropriate component based on the active step */}
             <div style={{ display: "flex", justifyContent: "center" }}>
-              {activeStep === 1 && (
-                <AddressSelector setAddress={setAddress} />
-              )}
+              {activeStep === 1 && <AddressSelector setAddress={setAddress} />}
               {activeStep === 2 && (
                 <OrderSummary data={{ ...location.state, address }} />
               )}
@@ -113,7 +115,6 @@ const Checkout = () => {
           </Grid>
         </Grid>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
     </>
   );
 };

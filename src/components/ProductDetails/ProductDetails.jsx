@@ -5,17 +5,18 @@ import { toast } from "react-toastify";
 
 import "./ProductDetails.css";
 import Categories from "../../common/Categories";
-import Copyright from "../../common/Copyright";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
-  const { productId } = useParams();
-  const { userInfo } = useOutletContext();
+  const { productId } = useParams(); // Extracting productId from the route parameters
+  const { userInfo } = useOutletContext(); // Accessing user information from the context
 
+  // State variables for product details, selected category, and order quantity
   const [product, setProduct] = useState({ category: "" });
   const [category, setCategory] = useState("all");
   const [orderQuantity, setOrderQuantity] = useState(1);
 
+  // Fetch product details based on productId and user authentication
   useEffect(() => {
     fetch(`/api/products/${productId}`, {
       method: "GET",
@@ -47,17 +48,20 @@ const ProductDetails = () => {
     product.category.charAt(0).toUpperCase() + product.category.slice(1);
 
   const handleChange = (e) => {
+    //To handle change in the order quantity input field
     if (e.target.value > 0) {
       setOrderQuantity(e.target.value);
     }
   };
 
   const handlePlaceOrder = () => {
+    //To handle placing an order and navigate to the checkout page
     navigate(`/checkout/${productId}`, {
       state: { product, orderQuantity },
     });
   };
 
+  // Render the ProductDetails component
   return (
     <div className="productDetails">
       <Categories category={category} setCategory={setCategory} />
@@ -69,6 +73,7 @@ const ProductDetails = () => {
           spacing={4}
           alignItems="flex-start"
         >
+          {/* Product image */}
           <Grid item xs={4} className="media">
             <img src={product.imageUrl} alt={product.name} />
           </Grid>
@@ -80,6 +85,7 @@ const ProductDetails = () => {
                 color="primary"
               />
             </div>
+            {/* Product details */}
             <div className="descDetails">
               <Typography variant="subtitle1" gutterBottom>
                 Categories: <b>{capitalizedCategory}</b>{" "}
@@ -89,7 +95,7 @@ const ProductDetails = () => {
                 <span>&#x20B9;</span> {product.price}
               </Typography>
             </div>
-
+            {/* Form for ordering */}
             <Box component="form" className="actions">
               <TextField
                 required
@@ -119,7 +125,6 @@ const ProductDetails = () => {
           </Grid>
         </Grid>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
     </div>
   );
 };

@@ -18,17 +18,21 @@ import Navbar from "../Navbar/Navbar";
 import Copyright from "../../common/Copyright";
 
 const Login = ({ userInfo, setUserInfo }) => {
+
+  // State variables for username and password
   const [username, setUserame] = useState();
   const [password, setPassword] = useState();
 
   const navigate = useNavigate();
 
+  // Check if user is already logged in and redirect to the home page
   useEffect(() => {
     if (userInfo.token) {
       navigate("/");
     }
   }, [userInfo.token, navigate]);
 
+  // Function to handle form submission with credentials
   const submitHandler = async (e) => {
     e.preventDefault();
     fetch(`/api/auth/signin`, {
@@ -52,6 +56,7 @@ const Login = ({ userInfo, setUserInfo }) => {
         return { ...data, token: res.headers.get("x-auth-token") };
       })
       .then((data) => {
+        // Set user information and navigate to the home page on successful login
         setUserInfo(data);
         navigate("/", { state: { message: "Login successful" } });
       })
@@ -59,7 +64,7 @@ const Login = ({ userInfo, setUserInfo }) => {
         toast.error(err.toString(), { toastId: "login-alert" });
       });
   };
-
+   // Render the Login component
   return (
     <>
       <Navbar userInfo={userInfo} />

@@ -11,6 +11,7 @@ const Categories = ({ category, setCategory, refreshCategory }) => {
     }
   };
 
+  //Fetch the list of all categories
   useEffect(() => {
     fetch(`/api/products/categories`, {
       method: "GET",

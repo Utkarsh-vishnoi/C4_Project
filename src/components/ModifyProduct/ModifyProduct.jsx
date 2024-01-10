@@ -4,7 +4,6 @@ import { useOutletContext, useParams } from "react-router-dom";
 
 import CreatableSelect from "react-select/creatable";
 import { toast } from "react-toastify";
-import Copyright from "../../common/Copyright";
 
 const ModifyProduct = () => {
   const { productId } = useParams();
@@ -288,8 +287,6 @@ const ModifyProduct = () => {
           </Button>
         </Box>
       </Box>
-
-      <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
   );
 };

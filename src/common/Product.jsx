@@ -20,10 +20,12 @@ const Product = ({ product, userInfo, onDelete }) => {
 
   const [deleteDialog, showDeleteDialog] = useState(false);
 
+//Navigate to update product page
   const modifyHandler = () => {
     navigate(`/update/${product.id}`);
   };
 
+  //Delete the product
   const handleDelete = () => {
     fetch(`/api/products/${product.id}`, {
       method: "DELETE",
@@ -38,7 +40,7 @@ const Product = ({ product, userInfo, onDelete }) => {
           );
       })
       .then(() => {
-        onDelete(product.id);
+        onDelete(product.id); //Removes the product from product listing
         showDeleteDialog(false);
         toast.success(`Product ${product.name} deleted successfully`, {
           toastId: "product-delete",
@@ -93,7 +95,7 @@ const Product = ({ product, userInfo, onDelete }) => {
               Buy
             </Button>
           </Link>
-
+          {/* Check if user role is Admin and show edit & delete icons */}
           {userInfo.roles.includes("ADMIN") && (
             <Typography className="adminOps">
               <IconButton aria-label="edit" onClick={modifyHandler}>

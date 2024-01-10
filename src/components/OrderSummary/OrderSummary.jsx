@@ -5,6 +5,7 @@ import "./OrderSummary.css";
 const OrderSummary = ({ data }) => {
   return (
     <>
+    {/* Container for order summary */}
       <Box
         className="confirm"
         sx={{

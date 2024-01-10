@@ -5,11 +5,10 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Grid } from "@mui/material";
 import Product from "../../common/Product";
-import Copyright from "../../common/Copyright";
 
 const Home = () => {
   const { userInfo, searchQuery } = useOutletContext();
-
+  // State variables to manage sorting, products list and category
   const [sort, setSort] = useState("default");
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState("all");
@@ -18,16 +17,17 @@ const Home = () => {
 
   useEffect(() => {
     let updateProducts = [];
-
+    
     if (searchQuery === "") {
+      // Filter products based on the selected category
       if (category === "all") {
-        updateProducts = [...products];
+        updateProducts = [...products]; // Display all products if the category is set to "all"
       } else {
         updateProducts = products.filter((item) =>
           item.category.includes(category)
         );
       }
-
+      // Sorting logic to display products accordingly
       if (sort === "asc") {
         updateProducts = updateProducts.sort(
           (a, b) => parseFloat(a.price) - parseFloat(b.price)
@@ -40,6 +40,7 @@ const Home = () => {
         updateProducts = updateProducts.reverse();
       }
     } else {
+      // Filter products based on the search query
       updateProducts = products.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
@@ -48,6 +49,7 @@ const Home = () => {
     setDisplayedProducts(updateProducts);
   }, [category, products, sort, searchQuery]);
 
+    // Fetch initial products on component load
   useEffect(() => {
     fetch(`/api/products`, {
       method: "GET",
@@ -67,8 +69,9 @@ const Home = () => {
         setDisplayedProducts(data);
       })
       .catch((err) => {
+        // Display an error toast if there is an issue with fetching products
         toast.error(err.toString(), { toastId: "products-alert" });
-      });
+      }); 
   }, []);
 
   const productDeleteHandler = (productId) => {
@@ -79,6 +82,7 @@ const Home = () => {
     setRefreshCategory(!refreshCategory);
   };
 
+  // Render the Home component with Categories, SortMenu, and Product components
   return (
     <div
       style={{
@@ -123,7 +127,6 @@ const Home = () => {
           ))}
         </Grid>
       </main>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
     </div>
   );
 };

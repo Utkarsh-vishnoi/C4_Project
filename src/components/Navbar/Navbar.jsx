@@ -8,8 +8,9 @@ import Searchbar from "../../common/Searchbar";
 const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
   const navigate = useNavigate();
 
+  // Function to handle user logout
   const logoutHandler = () => {
-    setUserInfo({ ...userInfo, token: "" });
+    setUserInfo({ ...userInfo, token: "" }); // Clear's user information
     navigate("/login");
   };
 
@@ -25,6 +26,7 @@ const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
           >
             upGrad E-Shop
           </Typography>
+          {/* Conditionally render based on user authentication */}
           {userInfo.token ? (
             <>
               <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -33,6 +35,7 @@ const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
                 <Link className="headerLinks" to="/" color="inherit">
                   Home
                 </Link>
+                {/* Validate user role and show "Add Product" link */}
                 {userInfo.roles.includes("ADMIN") && (
                   <Link className="headerLinks" to="/addProduct" color="inherit">
                     Add Product

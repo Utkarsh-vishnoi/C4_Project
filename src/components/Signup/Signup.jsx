@@ -19,22 +19,24 @@ import Copyright from "../../common/Copyright";
 
 const Signup = ({ userInfo }) => {
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [contactNumber, setContactNumber] = useState();
+  // State variables for signup form field inputs
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
 
   const role = ["user"];
 
+  // Check if user is already logged in else redirect to the home page
   useEffect(() => {
     if (userInfo.token) {
       navigate("/");
     }
   }, [userInfo.token, navigate]);
 
+  // Validate password and confirm password
   const isValidPassword = (password, confirmPassword) => {
     if (password.length < 6) {
       toast.error("Password length should be greater than 6", {
@@ -51,6 +53,7 @@ const Signup = ({ userInfo }) => {
     }
   };
 
+// Validate contact number
   const isValidPhoneNumber = (contactNumber) => {
     if (contactNumber.length !== 10) {
       toast.error("Contact Number should be 10 digits", {
@@ -69,7 +72,7 @@ const Signup = ({ userInfo }) => {
       isValidPassword(password, confirmPassword) &&
       isValidPhoneNumber(contactNumber)
     ) {
-      fetch(`/api/auth/signup`, {
+      fetch(`/api/auth/signup`, {   // Fetch API to sign up the user
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,14 +100,15 @@ const Signup = ({ userInfo }) => {
           return data;
         })
         .then((data) => {
-          toast.success(data.message, { toastId: "success" });
+          toast.success(data.message, { toastId: "success" });  // Display success message on successful signup
         })
         .catch((err) => {
-          toast.error(err.message, { toastId: "login-alert" });
+          toast.error(err.message, { toastId: "login-alert" }); // Display an error toast if there is an error with signup
         });
     }
   };
 
+  // Render the Signup component
   return (
     <>
       <Navbar userInfo={userInfo} />
