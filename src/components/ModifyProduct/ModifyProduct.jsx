@@ -23,7 +23,6 @@ const ModifyProduct = () => {
   const title = productId === undefined ? "Add Product" : "Modify Product";
 
   useEffect(() => {
-    // Fetch Category
     fetch(`/api/products/categories`, {
       method: "GET",
       headers: {
@@ -50,9 +49,41 @@ const ModifyProduct = () => {
       });
 
     if (productId !== undefined) {
-      // Fetch Product Details and set the variables accordingly
+      fetch(`/api/products/${productId}`, {
+        method: "GET",
+        headers: {
+          "x-auth-token": userInfo.token,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            if (res.status === 401) {
+              throw new Error("401 Unauthorized!");
+            } else {
+              throw new Error(
+                "There was a problem with the Fetch operation: " + res.status
+              );
+            }
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setName(data.name);
+          setCategory({
+            value: data.category,
+            label: data.category.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()),
+          });
+          setManufacturer(data.manufacturer);
+          setAvailableItems(data.availableItems);
+          setPrice(data.price);
+          setImageUrl(data.imageUrl);
+          setDescription(data.description);
+        })
+        .catch((err) => {
+          toast.error(err.toString(), { toastId: "login-alert" });
+        });
     }
-  }, [productId]);
+  }, [productId, userInfo.token]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -71,11 +102,21 @@ const ModifyProduct = () => {
     let request;
     if (productId !== undefined) {
       // Modify exisiting product
-      request = fetch(`/api/products/categories`, {
-        method: "GET",
+      request = fetch(`/api/products/${productId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "x-auth-token": userInfo.token,
         },
+        body: JSON.stringify({
+          name,
+          category: category.value,
+          price,
+          description,
+          manufacturer,
+          availableItems,
+          imageUrl,
+        }),
       });
     } else {
       request = fetch(`/api/products`, {
@@ -159,12 +200,11 @@ const ModifyProduct = () => {
               textAlign: "left",
             }}
             name="category"
+            placeholder="Category *"
             value={
-              // if there is a product id, we use the category value from the existing product
               productId
                 ? categories.filter((opt) => opt.value.includes(category.value))
-                : // we check if there is any category input to set the value of this selecting section
-                  category
+                : category
             }
             options={categories}
             clearable={false}

@@ -48,6 +48,10 @@ function App() {
           path: "/checkout/:id",
           element: <Checkout />,
         },
+        {
+          path: "/update/:productId",
+          element: <ModifyProduct />
+        }
       ]
     },
     {
