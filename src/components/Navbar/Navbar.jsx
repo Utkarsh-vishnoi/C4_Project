@@ -29,7 +29,10 @@ const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
           {/* Conditionally render based on user authentication */}
           {userInfo.token ? (
             <>
-              <Searchbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+              <Searchbar
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
               <Box sx={{ flexGrow: 1 }} />
               <div>
                 <Link className="headerLinks" to="/" color="inherit">
@@ -37,7 +40,11 @@ const Navbar = ({ userInfo, setUserInfo, searchQuery, setSearchQuery }) => {
                 </Link>
                 {/* Validate user role and show "Add Product" link */}
                 {userInfo.roles.includes("ADMIN") && (
-                  <Link className="headerLinks" to="/addProduct" color="inherit">
+                  <Link
+                    className="headerLinks"
+                    to="/addProduct"
+                    color="inherit"
+                  >
                     Add Product
                   </Link>
                 )}

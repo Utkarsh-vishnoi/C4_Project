@@ -31,7 +31,7 @@ const ModifyProduct = () => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })
@@ -40,7 +40,7 @@ const ModifyProduct = () => {
           data.map((category) => ({
             value: category,
             label: category.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()),
-          }))
+          })),
         );
       })
       .catch((err) => {
@@ -60,7 +60,7 @@ const ModifyProduct = () => {
               throw new Error("401 Unauthorized!");
             } else {
               throw new Error(
-                "There was a problem with the Fetch operation: " + res.status
+                "There was a problem with the Fetch operation: " + res.status,
               );
             }
           }
@@ -143,7 +143,7 @@ const ModifyProduct = () => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })
@@ -154,7 +154,7 @@ const ModifyProduct = () => {
             : `Product ${data.name} added successfully`,
           {
             toastId: "add-product",
-          }
+          },
         );
       })
       .catch((err) => {

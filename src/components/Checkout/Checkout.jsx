@@ -34,7 +34,7 @@ const Checkout = () => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })

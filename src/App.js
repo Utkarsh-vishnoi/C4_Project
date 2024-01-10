@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import './App.css';
-import Root from './common/Root.jsx';
+import "./App.css";
+import Root from "./common/Root.jsx";
 
-import Login from './components/Login/Login.jsx';
-import Signup from './components/Signup/Signup.jsx';
-// import Navbar from './components/Navbar/Navbar.jsx';
+import Login from "./components/Login/Login.jsx";
+import Signup from "./components/Signup/Signup.jsx";
 import { ThemeProvider, createTheme } from "@mui/material";
-import Home from './components/Home/Home.jsx';
-import ProductDetails from './components/ProductDetails/ProductDetails.jsx';
-import ModifyProduct from './components/ModifyProduct/ModifyProduct.jsx';
-import Checkout from './components/Checkout/Checkout.jsx';
+import Home from "./components/Home/Home.jsx";
+import ProductDetails from "./components/ProductDetails/ProductDetails.jsx";
+import ModifyProduct from "./components/ModifyProduct/ModifyProduct.jsx";
+import Checkout from "./components/Checkout/Checkout.jsx";
 
 const theme = createTheme({
   palette: {
@@ -20,12 +19,12 @@ const theme = createTheme({
     },
     secondary: {
       main: "#f50057",
-    }
-  }
+    },
+  },
 });
 
 function App() {
-  const [userInfo, setUserInfo] = useState({ token: "", roles: [] })
+  const [userInfo, setUserInfo] = useState({ token: "", roles: [] });
 
   const router = createBrowserRouter([
     {
@@ -34,15 +33,15 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />
+          element: <Home />,
         },
         {
-          path: '/product/:productId',
-          element: <ProductDetails />
+          path: "/product/:productId",
+          element: <ProductDetails />,
         },
         {
-          path: '/addProduct',
-          element: <ModifyProduct />
+          path: "/addProduct",
+          element: <ModifyProduct />,
         },
         {
           path: "/checkout/:id",
@@ -50,9 +49,9 @@ function App() {
         },
         {
           path: "/update/:productId",
-          element: <ModifyProduct />
-        }
-      ]
+          element: <ModifyProduct />,
+        },
+      ],
     },
     {
       path: "/login",
@@ -60,21 +59,21 @@ function App() {
     },
     {
       path: "/signup",
-      element: <Signup userInfo={userInfo} />
-    }
-  ])
+      element: <Signup userInfo={userInfo} />,
+    },
+  ]);
 
   if (!userInfo.token) {
-    router.navigate('/login')
+    router.navigate("/login");
   }
 
   return (
     <>
-      <ThemeProvider theme={theme} >
+      <ThemeProvider theme={theme}>
         <RouterProvider router={router} />
       </ThemeProvider>
     </>
-  )
+  );
 }
 
 export default App;

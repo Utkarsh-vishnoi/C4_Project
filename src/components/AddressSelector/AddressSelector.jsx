@@ -30,7 +30,7 @@ const AddressSelector = ({ setAddress }) => {
   useEffect(() => {
     if (addressId !== "")
       setAddress(
-        addresses.filter((address) => address.address.id === addressId)[0]
+        addresses.filter((address) => address.address.id === addressId)[0],
       );
     else setAddress({ label: "", address: { id: "" } });
   }, [addressId, addresses, setAddress]);
@@ -47,7 +47,7 @@ const AddressSelector = ({ setAddress }) => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })
@@ -58,7 +58,7 @@ const AddressSelector = ({ setAddress }) => {
             address,
             //Translate first letter of all words to uppercase
             label: address.name.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase()),
-          }))
+          })),
         );
       })
       .catch((err) => {
@@ -75,7 +75,7 @@ const AddressSelector = ({ setAddress }) => {
     setLandmark("");
     setZipcode("");
   };
- 
+
   //Function to save address after validation
   const addAddressHandler = (e) => {
     e.preventDefault();
@@ -110,7 +110,7 @@ const AddressSelector = ({ setAddress }) => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })

@@ -20,7 +20,7 @@ const Product = ({ product, userInfo, onDelete }) => {
 
   const [deleteDialog, showDeleteDialog] = useState(false);
 
-//Navigate to update product page
+  //Navigate to update product page
   const modifyHandler = () => {
     navigate(`/update/${product.id}`);
   };
@@ -36,7 +36,7 @@ const Product = ({ product, userInfo, onDelete }) => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
       })
       .then(() => {

@@ -5,7 +5,7 @@ import "./OrderSummary.css";
 const OrderSummary = ({ data }) => {
   return (
     <>
-    {/* Container for order summary */}
+      {/* Container for order summary */}
       <Box
         className="confirm"
         sx={{
@@ -36,7 +36,7 @@ const OrderSummary = ({ data }) => {
               Category:{" "}
               <b>
                 {data.product.category.replace(/(^\w|\s\w)/g, (m) =>
-                  m.toUpperCase()
+                  m.toUpperCase(),
                 )}
               </b>{" "}
             </Typography>

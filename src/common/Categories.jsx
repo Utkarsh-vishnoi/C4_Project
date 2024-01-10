@@ -22,13 +22,13 @@ const Categories = ({ category, setCategory, refreshCategory }) => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })
       .then((data) => {
-        if(!data.includes(category)){
-          setCategory("all")
+        if (!data.includes(category)) {
+          setCategory("all");
         }
         setCategories(data);
       })
@@ -48,9 +48,7 @@ const Categories = ({ category, setCategory, refreshCategory }) => {
         justifyContent: "center",
       }}
     >
-      <ToggleButton value="all">
-        ALL
-      </ToggleButton>
+      <ToggleButton value="all">ALL</ToggleButton>
       {categories.map((item, index) => (
         <ToggleButton key={index} value={item}>
           {item.toUpperCase()}

@@ -10,7 +10,7 @@ const Root = ({ userInfo, setUserInfo }) => {
 
   const location = useLocation();
 
-// Check if message is found and raise a toast
+  // Check if message is found and raise a toast
   useEffect(() => {
     if (location.state !== null) {
       let message = location.state.message;

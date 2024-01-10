@@ -30,7 +30,7 @@ const ProductDetails = () => {
             throw new Error("401 Unauthorized!");
           } else {
             throw new Error(
-              "There was a problem with the Fetch operation: " + res.status
+              "There was a problem with the Fetch operation: " + res.status,
             );
           }
         }

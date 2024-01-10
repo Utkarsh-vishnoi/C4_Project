@@ -53,7 +53,7 @@ const Signup = ({ userInfo }) => {
     }
   };
 
-// Validate contact number
+  // Validate contact number
   const isValidPhoneNumber = (contactNumber) => {
     if (contactNumber.length !== 10) {
       toast.error("Contact Number should be 10 digits", {
@@ -72,7 +72,8 @@ const Signup = ({ userInfo }) => {
       isValidPassword(password, confirmPassword) &&
       isValidPhoneNumber(contactNumber)
     ) {
-      fetch(`/api/auth/signup`, {   // Fetch API to sign up the user
+      fetch(`/api/auth/signup`, {
+        // Fetch API to sign up the user
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,14 +94,14 @@ const Signup = ({ userInfo }) => {
               throw new Error(data.message);
             } else {
               throw new Error(
-                "There was a problem with the Fetch operation: " + res.status
+                "There was a problem with the Fetch operation: " + res.status,
               );
             }
           }
           return data;
         })
         .then((data) => {
-          toast.success(data.message, { toastId: "success" });  // Display success message on successful signup
+          toast.success(data.message, { toastId: "success" }); // Display success message on successful signup
         })
         .catch((err) => {
           toast.error(err.message, { toastId: "login-alert" }); // Display an error toast if there is an error with signup

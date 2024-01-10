@@ -17,24 +17,24 @@ const Home = () => {
 
   useEffect(() => {
     let updateProducts = [];
-    
+
     if (searchQuery === "") {
       // Filter products based on the selected category
       if (category === "all") {
         updateProducts = [...products]; // Display all products if the category is set to "all"
       } else {
         updateProducts = products.filter((item) =>
-          item.category.includes(category)
+          item.category.includes(category),
         );
       }
       // Sorting logic to display products accordingly
       if (sort === "asc") {
         updateProducts = updateProducts.sort(
-          (a, b) => parseFloat(a.price) - parseFloat(b.price)
+          (a, b) => parseFloat(a.price) - parseFloat(b.price),
         );
       } else if (sort === "desc") {
         updateProducts = updateProducts.sort(
-          (a, b) => parseFloat(b.price) - parseFloat(a.price)
+          (a, b) => parseFloat(b.price) - parseFloat(a.price),
         );
       } else if (sort === "new") {
         updateProducts = updateProducts.reverse();
@@ -42,14 +42,14 @@ const Home = () => {
     } else {
       // Filter products based on the search query
       updateProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()),
       );
     }
 
     setDisplayedProducts(updateProducts);
   }, [category, products, sort, searchQuery]);
 
-    // Fetch initial products on component load
+  // Fetch initial products on component load
   useEffect(() => {
     fetch(`/api/products`, {
       method: "GET",
@@ -60,7 +60,7 @@ const Home = () => {
       .then((res) => {
         if (!res.ok)
           throw new Error(
-            "There was a problem with the Fetch operation: " + res.status
+            "There was a problem with the Fetch operation: " + res.status,
           );
         return res.json();
       })
@@ -71,12 +71,12 @@ const Home = () => {
       .catch((err) => {
         // Display an error toast if there is an issue with fetching products
         toast.error(err.toString(), { toastId: "products-alert" });
-      }); 
+      });
   }, []);
 
   const productDeleteHandler = (productId) => {
     setDisplayedProducts(
-      displayedProducts.filter((product) => product.id !== productId)
+      displayedProducts.filter((product) => product.id !== productId),
     );
     setProducts(products.filter((product) => product.id !== productId));
     setRefreshCategory(!refreshCategory);

@@ -18,7 +18,6 @@ import Navbar from "../Navbar/Navbar";
 import Copyright from "../../common/Copyright";
 
 const Login = ({ userInfo, setUserInfo }) => {
-
   // State variables for username and password
   const [username, setUserame] = useState();
   const [password, setPassword] = useState();
@@ -48,7 +47,7 @@ const Login = ({ userInfo, setUserInfo }) => {
             throw new Error("Incorrect E-mail or Password.");
           } else {
             throw new Error(
-              "There was a problem with the Fetch operation: " + res.status
+              "There was a problem with the Fetch operation: " + res.status,
             );
           }
         }
@@ -64,7 +63,7 @@ const Login = ({ userInfo, setUserInfo }) => {
         toast.error(err.toString(), { toastId: "login-alert" });
       });
   };
-   // Render the Login component
+  // Render the Login component
   return (
     <>
       <Navbar userInfo={userInfo} />
