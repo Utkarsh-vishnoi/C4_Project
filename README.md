@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+<div align='center'>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>React-App</h1>
+<p>E-Commerce Website (Good Looking)</p>
 
-## Available Scripts
+<h4> <span> · </span> <a href="https://github.com/utkarsh-vishnoi/C4_Project/blob/master/README.md"> Documentation </a> <span> · </span> <a href="https://github.com/utkarsh-vishnoi/C4_Project/issues"> Report Bug </a> <span> · </span> <a href="https://github.com/utkarsh-vishnoi/C4_Project/issues"> Request Feature </a> </h4>
 
-In the project directory, you can run:
 
-### `npm start`
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# :notebook_with_decorative_cover: Table of Contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [About the Project](#star2-about-the-project)
+- [Contributing](#wave-contributing)
+- [Acknowledgements](#gem-acknowledgements)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :star2: About the Project
 
-### `npm run build`
+### :dart: Features
+- Very-Fast
+- Bug-Free
+- authentication
+- cannot-view-orders
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## :toolbox: Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### :bangbang: Prerequisites
 
-### `npm run eject`
+- Install Node JS in your computer<a href="https://nodejs.org/en/"> Here</a>
+- Install all dependencies
+```bash
+npm install
+```
+- Backend should be setup<a href="https://github.com/mohinishjoshi/ecommerce-upgrad"> Here</a>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### :running: Run Locally
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone the project
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+https://github.com/Utkarsh-vishnoi/C4_Project
+```
+Go to the project directory
+```bash
+cd C4_Project
+```
+Install dependencies
+```bash
+npm install
+```
+Start the server
+```bash
+npm start
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## :wave: Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a href="https://github.com/Utkarsh-vishnoi/C4_Project/graphs/contributors"> <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" /> </a>
 
-### Code Splitting
+Contributions are always welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+see `contributing.md` for ways to get started
 
-### Analyzing the Bundle Size
+## :gem: Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Use this section to mention useful resources and libraries that you have used in your projects.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React Creatable](https://react-select.com/creatable)
+- [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-expose-headers)
+- [Upgrad](https://www.upgrad.com/)
